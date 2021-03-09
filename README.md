@@ -114,27 +114,40 @@ TypeScript中的基本类型：
     }
     ```
 
-- object（没啥用）
+- object
 
   - ```typescript
+    // 用的少
     let obj: object = {};
+    
     // 在属性名后面加上？,表示属性是可选的
     let b: {name: string, age?:number}
+    
     // 除了name属性，其他属性名是任意类型
     let c: {name: string, [propName: string]: any}
     c = {name: 'ces', age: 18, gender: '男'}
+    
+    // 设置函数结构类型声明： (形参： 类型， 形参： 类型， ...) => 返回值
+    let d: (a: number, b: number)=>number
+    d = function(n1: number, n2: number) :number {
+        return n1 + n2
+    }
     ```
 
 - array
 
   - ```typescript
+    // 语法： 类型[] 或 Array<类型>
+    // 表示数字型数组
     let list: number[] = [1, 2, 3];
+    // 或
     let list: Array<number> = [1, 2, 3];
     ```
 
 - tuple
 
   - ```typescript
+    // 语法： [类型，类型, ....]
     let x: [string, number];
     x = ["hello", 10]; 
     ```
@@ -166,19 +179,43 @@ TypeScript中的基本类型：
 
 - 类型断言
 
+  ​	语法：变量 as 类型    或者  <类型>变量
+
   - 有些情况下，变量的类型对于我们来说是很明确，但是TS编译器却并不清楚，此时，可以通过类型断言来告诉编译器变量的类型，断言有两种形式：
 
     - 第一种
-
+  
       - ```typescript
         let someValue: unknown = "this is a string";
-        let strLength: number = (someValue as string).length;
+      let strLength: number = (someValue as string).length;
         ```
 
     - 第二种
-
+  
       - ```typescript
         let someValue: unknown = "this is a string";
         let strLength: number = (<string>someValue).length;
         ```
 
+- 或 且
+
+  语法: |   &
+
+  ```js
+  let j: {name: string} & {age: number}
+  j = {name: 's', age: 18}
+  ```
+
+- 类型别名
+
+  ```js
+  // 使用关键字type
+  type myType = 1 | 2 | 3 | 4 | 5;
+  let k: myType;
+  let l: myType;
+  let m: myType;
+  
+  k = 2;
+  ```
+
+  
