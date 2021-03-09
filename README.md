@@ -118,6 +118,11 @@ TypeScript中的基本类型：
 
   - ```typescript
     let obj: object = {};
+    // 在属性名后面加上？,表示属性是可选的
+    let b: {name: string, age?:number}
+    // 除了name属性，其他属性名是任意类型
+    let c: {name: string, [propName: string]: any}
+    c = {name: 'ces', age: 18, gender: '男'}
     ```
 
 - array
